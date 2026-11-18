@@ -1,0 +1,9 @@
+__pycache__/
+terraform/.terraform/
+terraform/build/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/*.tfplan
+terraform/terraform.tfvars
+# Terraform と関数のログにはアカウントIDやARNが含まれるため公開しない
+results/*.log

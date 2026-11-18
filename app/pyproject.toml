@@ -1,0 +1,7 @@
+# requirements.txt(ハッシュ付きロック)を生成するための入力。イメージのビルドでは使わない。
+[project]
+name = "lmi-gpu-s2z-function"
+version = "0.0.0"
+requires-python = "==3.12.*"
+# runai 追加機能で、S3 の重みを GPU へ直接ストリーミングする。
+dependencies = ["vllm[runai]==0.33.0", "boto3"]

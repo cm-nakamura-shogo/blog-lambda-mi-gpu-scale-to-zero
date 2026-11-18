@@ -1,0 +1,5 @@
+# 使う AWS CLI のプロファイル
+# aws_profile = "default"
+
+# GPU関数を作る(作るとGPUインスタンスが起動する)。最初は false で、イメージのビルドとモデルの転送だけ行う。
+deploy_function = false

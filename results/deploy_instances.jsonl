@@ -1,0 +1,4 @@
+{"t": 121.8, "at": "2026-11-18T14:06:45.078+00:00", "id": "i-0a63dff0b192f952e", "type": "g6e.xlarge", "az": "ap-northeast-1c", "state": "running", "launch_time": "2026-11-18T14:06:36+00:00"}
+{"t": 539.4, "at": "2026-11-18T14:13:42.634+00:00", "id": "i-0a63dff0b192f952e", "type": "g6e.xlarge", "az": "ap-northeast-1c", "state": "shutting-down", "launch_time": "2026-11-18T14:06:36+00:00"}
+{"t": 1483.6, "at": "2026-11-18T14:29:26.885+00:00", "id": "i-0fea0412cfa09dfcc", "type": "g6e.xlarge", "az": "ap-northeast-1c", "state": "pending", "launch_time": "2026-11-18T14:29:23+00:00"}
+{"t": 1493.8, "at": "2026-11-18T14:29:37.076+00:00", "id": "i-0fea0412cfa09dfcc", "type": "g6e.xlarge", "az": "ap-northeast-1c", "state": "running", "launch_time": "2026-11-18T14:29:23+00:00"}

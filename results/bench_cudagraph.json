@@ -1,0 +1,105 @@
+{
+  "cuda_graph": true,
+  "rows": [
+    {
+      "input_tokens": 254,
+      "concurrency": 1,
+      "ttft_ms": 83.6,
+      "e2e_tok_per_sec": 140.13,
+      "decode_tok_per_sec": 146.24,
+      "aggregate_tok_per_sec": 140.13,
+      "rounds": [
+        {
+          "ttft_ms": 83.6,
+          "e2e_seconds": 1.826,
+          "output_tokens": 256,
+          "e2e_tok_per_sec": 140.19,
+          "decode_tok_per_sec": 146.35,
+          "aggregate_tok_per_sec": 140.19
+        },
+        {
+          "ttft_ms": 83.4,
+          "e2e_seconds": 1.828,
+          "output_tokens": 256,
+          "e2e_tok_per_sec": 140.08,
+          "decode_tok_per_sec": 146.2,
+          "aggregate_tok_per_sec": 140.08
+        },
+        {
+          "ttft_ms": 83.7,
+          "e2e_seconds": 1.827,
+          "output_tokens": 256,
+          "e2e_tok_per_sec": 140.09,
+          "decode_tok_per_sec": 146.24,
+          "aggregate_tok_per_sec": 140.09
+        },
+        {
+          "ttft_ms": 84.2,
+          "e2e_seconds": 1.827,
+          "output_tokens": 256,
+          "e2e_tok_per_sec": 140.14,
+          "decode_tok_per_sec": 146.34,
+          "aggregate_tok_per_sec": 140.14
+        },
+        {
+          "ttft_ms": 83.1,
+          "e2e_seconds": 1.827,
+          "output_tokens": 256,
+          "e2e_tok_per_sec": 140.13,
+          "decode_tok_per_sec": 146.24,
+          "aggregate_tok_per_sec": 140.13
+        }
+      ]
+    },
+    {
+      "input_tokens": 254,
+      "concurrency": 4,
+      "ttft_ms": 166.1,
+      "e2e_tok_per_sec": 103.99,
+      "decode_tok_per_sec": 111.12,
+      "aggregate_tok_per_sec": 415.95,
+      "rounds": [
+        {
+          "ttft_ms": 165.5,
+          "e2e_seconds": 2.635,
+          "output_tokens": 1024,
+          "e2e_tok_per_sec": 97.16,
+          "decode_tok_per_sec": 103.26,
+          "aggregate_tok_per_sec": 388.62
+        },
+        {
+          "ttft_ms": 166.1,
+          "e2e_seconds": 2.445,
+          "output_tokens": 1024,
+          "e2e_tok_per_sec": 104.7,
+          "decode_tok_per_sec": 111.89,
+          "aggregate_tok_per_sec": 418.78
+        },
+        {
+          "ttft_ms": 165.4,
+          "e2e_seconds": 2.459,
+          "output_tokens": 1024,
+          "e2e_tok_per_sec": 104.1,
+          "decode_tok_per_sec": 111.17,
+          "aggregate_tok_per_sec": 416.38
+        },
+        {
+          "ttft_ms": 167.0,
+          "e2e_seconds": 2.462,
+          "output_tokens": 1024,
+          "e2e_tok_per_sec": 103.99,
+          "decode_tok_per_sec": 111.12,
+          "aggregate_tok_per_sec": 415.95
+        },
+        {
+          "ttft_ms": 166.5,
+          "e2e_seconds": 2.567,
+          "output_tokens": 1024,
+          "e2e_tok_per_sec": 99.72,
+          "decode_tok_per_sec": 106.21,
+          "aggregate_tok_per_sec": 398.87
+        }
+      ]
+    }
+  ]
+}

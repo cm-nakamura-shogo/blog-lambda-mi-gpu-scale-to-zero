@@ -1,0 +1,2 @@
+{"t": 0.5, "at": "2026-11-18T15:13:39.474+00:00", "id": "i-04667088e17f44ffc", "type": "g6e.xlarge", "az": "ap-northeast-1c", "state": "running", "launch_time": "2026-11-18T15:08:18+00:00"}
+{"t": 987.2, "at": "2026-11-18T15:30:06.214+00:00", "id": "i-04667088e17f44ffc", "type": "g6e.xlarge", "az": "ap-northeast-1c", "state": "shutting-down", "launch_time": "2026-11-18T15:08:18+00:00"}

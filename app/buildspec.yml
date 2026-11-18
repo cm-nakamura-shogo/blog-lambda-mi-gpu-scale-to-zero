@@ -1,0 +1,15 @@
+version: 0.2
+
+# REPOSITORY_URI / IMAGE_TAG / BASE_IMAGE は CodeBuild プロジェクトの環境変数として Terraform から渡す。
+phases:
+  pre_build:
+    commands:
+      - aws ecr get-login-password --region "$AWS_DEFAULT_REGION" | docker login --username AWS --password-stdin "${REPOSITORY_URI%%/*}"
+  build:
+    on-failure: ABORT
+    commands:
+      # Lambda は attestation 付きの image index を受け付けないので、provenance を無効にする。
+      - docker build --provenance=false --platform linux/amd64 --build-arg BASE_IMAGE="$BASE_IMAGE" -t "$REPOSITORY_URI:$IMAGE_TAG" .
+  post_build:
+    commands:
+      - docker push "$REPOSITORY_URI:$IMAGE_TAG"

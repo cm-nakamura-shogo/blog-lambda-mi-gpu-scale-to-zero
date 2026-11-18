@@ -1,0 +1,42 @@
+{
+  "started_at_epoch": 1795014490.771366,
+  "instances_before": [],
+  "sdk_default": {
+    "retry_mode": "standard",
+    "attempts": 3,
+    "elapsed_seconds": 2.86,
+    "status": "TooManyRequestsException",
+    "detail": "No execution environments are available for this function version. Lambda scaled the function down to zero after a period of inactivity and is starting a new execution environment, which may take a few minutes. Retry the request with exponential backoff. To keep environments always available, set Mi"
+  },
+  "status_counts": {
+    "TooManyRequestsException": 51,
+    "OK": 1
+  },
+  "seconds_to_first_success": 259.97,
+  "response": {
+    "invocation_in_this_env": 1,
+    "received_epoch": 1795014749.0195837,
+    "init": {
+      "start_epoch": 1795014652.9421968,
+      "end_epoch": 1795014745.0724804,
+      "host_uptime_at_init_seconds": 143.52,
+      "vllm_import_seconds": 9.198,
+      "engine_init_seconds": 82.933,
+      "total_seconds": 92.13,
+      "cuda_graph": true,
+      "load_format": "runai_streamer",
+      "vllm_logs": []
+    },
+    "result": {
+      "text": "Lambdaは、関数型プログラミングにおいて無名関数を定義するための構文であり、引数を取って値を返す小さな関数として利用される。",
+      "output_tokens": 42,
+      "seconds": 1.562
+    }
+  },
+  "breakdown_seconds": {
+    "until_init_start": 162.17,
+    "init": 92.13,
+    "init_end_to_response": 5.67,
+    "host_uptime_at_init": 143.52
+  }
+}
