@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Lambda Managed Instances の GPU 関数で vLLM をスケールトゥゼロにする構成",
+    "quality_profile": "showcase"
+  },
+  "components": [
+    {
+      "id": "client",
+      "type": "external",
+      "label": "手元の PC",
+      "sublabel": "計測スクリプト",
+      "pos": [
+        40,
+        330
+      ],
+      "size": [
+        140,
+        64
+      ]
+    },
+    {
+      "id": "lambda-api",
+      "type": "cloud",
+      "label": "Lambda",
+      "sublabel": "Invoke API",
+      "pos": [
+        260,
+        330
+      ],
+      "size": [
+        140,
+        64
+      ]
+    },
+    {
+      "id": "gpu-fn",
+      "type": "backend",
+      "label": "GPU 関数",
+      "sublabel": "vLLM + Qwen3-30B-A3B",
+      "tag": "g6e.xlarge / L40S",
+      "pos": [
+        520,
+        326
+      ],
+      "size": [
+        190,
+        72
+      ]
+    },
+    {
+      "id": "capacity",
+      "type": "cloud",
+      "label": "Capacity Provider",
+      "sublabel": "最小 0 / 最大 1",
+      "pos": [
+        530,
+        140
+      ],
+      "size": [
+        170,
+        64
+      ]
+    },
+    {
+      "id": "ecr",
+      "type": "database",
+      "label": "ECR",
+      "sublabel": "イメージ 4.8GB",
+      "pos": [
+        840,
+        230
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "s3",
+      "type": "database",
+      "label": "S3",
+      "sublabel": "重み 29GiB",
+      "pos": [
+        840,
+        440
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "codebuild",
+      "type": "backend",
+      "label": "CodeBuild",
+      "sublabel": "ビルドとモデル転送",
+      "pos": [
+        1100,
+        330
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "hf",
+      "type": "external",
+      "label": "Hugging Face",
+      "sublabel": "モデルの配布元",
+      "pos": [
+        1100,
+        540
+      ],
+      "size": [
+        160,
+        64
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "AWS 東京リージョン",
+      "wraps": [
+        "lambda-api",
+        "capacity",
+        "gpu-fn",
+        "ecr",
+        "s3",
+        "codebuild"
+      ]
+    },
+    {
+      "kind": "security-group",
+      "label": "VPC プライベートサブネット",
+      "wraps": [
+        "gpu-fn"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "invoke",
+      "from": "client",
+      "to": "lambda-api",
+      "label": "invoke"
+    },
+    {
+      "id": "route",
+      "from": "lambda-api",
+      "to": "gpu-fn",
+      "label": "ゼロなら 429"
+    },
+    {
+      "id": "scale",
+      "from": "capacity",
+      "to": "gpu-fn",
+      "label": "起動と終了",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelAt": [
+        615,
+        240
+      ]
+    },
+    {
+      "id": "pull-image",
+      "from": "ecr",
+      "to": "gpu-fn",
+      "label": "イメージ取得",
+      "fromSide": "left",
+      "toSide": "right"
+    },
+    {
+      "id": "stream-weights",
+      "from": "s3",
+      "to": "gpu-fn",
+      "label": "重みのストリーミング",
+      "fromSide": "left",
+      "toSide": "right"
+    },
+    {
+      "id": "push-image",
+      "from": "codebuild",
+      "to": "ecr",
+      "label": "push"
+    },
+    {
+      "id": "sync-model",
+      "from": "codebuild",
+      "to": "s3",
+      "label": "転送"
+    },
+    {
+      "id": "download",
+      "from": "hf",
+      "to": "codebuild",
+      "label": "ダウンロード",
+      "variant": "dashed",
+      "fromSide": "top",
+      "toSide": "bottom"
+    }
+  ]
+}
