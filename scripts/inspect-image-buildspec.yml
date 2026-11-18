@@ -1,0 +1,9 @@
+version: 0.2
+phases:
+  build:
+    commands:
+      - aws ecr get-login-password --region "$AWS_DEFAULT_REGION" | docker login --username AWS --password-stdin "${REPOSITORY_URI%%/*}"
+      - start=$(date +%s); docker pull "$REPOSITORY_URI:$IMAGE_TAG" > /dev/null; echo "PULL_SECONDS=$(( $(date +%s) - start ))"
+      - docker image inspect "$REPOSITORY_URI:$IMAGE_TAG" --format 'UNCOMPRESSED_BYTES={{.Size}}'
+      - docker history --no-trunc --format '{{.Size}}\t{{.CreatedBy}}' "$REPOSITORY_URI:$IMAGE_TAG" | cut -c1-120
+      - docker run --rm --entrypoint sh "$REPOSITORY_URI:$IMAGE_TAG" -c 'du -sm /var/lang/lib/python3.12/site-packages/* | sort -n | tail -15; du -sm /var/lang/lib/python3.12/site-packages'

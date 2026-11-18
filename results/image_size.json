@@ -1,0 +1,19 @@
+{
+  "image_tag": "170edd84dd6a",
+  "compressed_bytes_ecr": 4821420228,
+  "uncompressed_bytes_docker": 10789871859,
+  "docker_pull_seconds_codebuild_tokyo": 103,
+  "site_packages_mb": {
+    "nvidia": 3546,
+    "torch": 1174,
+    "triton": 896,
+    "vllm": 870,
+    "flashinfer": 535,
+    "nvidia_cutlass_dsl": 485,
+    "tokenspeed_triton": 290,
+    "tilelang": 206,
+    "llvmlite": 162,
+    "transformers": 114,
+    "total": 9640
+  }
+}

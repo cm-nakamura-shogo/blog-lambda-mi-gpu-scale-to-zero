@@ -44,7 +44,12 @@ uv run bench.py --profile <プロファイル> --function lmi-gpu-s2z-function -
 # 5. 最後の呼び出しからインスタンスが終了するまでを監視する
 uv run watch_scale_down.py --profile <プロファイル> --vpc-id "$(terraform -chdir=../terraform output -raw vpc_id)" --interval 15 --out ../results/scale_down.jsonl
 
-# 6. 片付け
+# 6. (任意)イメージの展開後のサイズを測る。IMAGE_TAG は ECR のタグ
+aws codebuild start-build --project-name lmi-gpu-s2z-image-build \
+  --buildspec-override file://../scripts/inspect-image-buildspec.yml \
+  --environment-variables-override name=IMAGE_TAG,value=<タグ>
+
+# 7. 片付け
 cd ../terraform
 terraform destroy -var deploy_function=true
 ```
